@@ -3,6 +3,7 @@ const app = express();
 const path = require("node:path");
 const gamesRouter = require("./routes/gamesRouter");
 const genresRouter = require("./routes/genresRouter");
+const db = require("./db/queries");
 
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
@@ -15,6 +16,10 @@ app.use("/genres", genresRouter);
 app.use("/games", gamesRouter);
 
 app.get("/", async (req, res) => {
+  /*
+  const topgames = await db.getTopGames();
+  res.render("index", { topgames: topgames });
+  */
   res.render("index");
 });
 

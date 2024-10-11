@@ -6,19 +6,18 @@ const SQL = `
 CREATE TABLE game (
     game_id SERIAL PRIMARY KEY,            -- Unique ID for each game
     title VARCHAR(255) NOT NULL,           -- Title of the game
+    overview TEXT,                         -- Short description
     release_date DATE,                     -- Release date of the game
     price DECIMAL(10, 2) NOT NULL,         -- Price of the game
-    stock_quantity INT DEFAULT 0,          -- Stock available for the game
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   -- Record creation timestamp
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  -- Last update timestamp
+    rating INT NOT NULL,                   -- From 0 to 5
+    image_url TEXT,
 );
 
 CREATE TABLE genre (
     genre_id SERIAL PRIMARY KEY,           -- Unique ID for each genre
     name VARCHAR(100) NOT NULL UNIQUE,     -- Genre name (e.g., Action, RPG)
     description TEXT,                      -- Optional description of the genre
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Record creation timestamp
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  -- Last update timestamp
+    image_url TEXT,
 );
 
 CREATE TABLE game_genre (
