@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameVerse - Your Ultimate Gaming Destination</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <%- include('header') %>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Welcome to GameVerse</h1>
+          <p>Your ultimate destination for all things gaming</p>
+          <a href="#" class="cta-button">Shop Now</a>
+        </div>
+      </section>
+
+      <section class="featured-section">
+        <div class="container">
+          <h2 class="section-title">Featured Games</h2>
+          <div class="game-grid">
+            <div class="game-card">
+              <img src="/api/placeholder/250/200" alt="Game 1" />
+              <div class="game-info">
+                <h3 class="game-title">Epic Adventure</h3>
+                <p class="game-price">$59.99</p>
+              </div>
+            </div>
+            <div class="game-card">
+              <img src="/api/placeholder/250/200" alt="Game 2" />
+              <div class="game-info">
+                <h3 class="game-title">Space Odyssey</h3>
+                <p class="game-price">$49.99</p>
+              </div>
+            </div>
+            <div class="game-card">
+              <img src="/api/placeholder/250/200" alt="Game 3" />
+              <div class="game-info">
+                <h3 class="game-title">Racing Legends</h3>
+                <p class="game-price">$39.99</p>
+              </div>
+            </div>
+            <div class="game-card">
+              <img src="/api/placeholder/250/200" alt="Game 4" />
+              <div class="game-info">
+                <h3 class="game-title">Puzzle Master</h3>
+                <p class="game-price">$29.99</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <%- include('footer') %>
+  </body>
+</html>
