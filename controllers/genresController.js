@@ -24,7 +24,7 @@ const validateGenre = [
 
 exports.getGenres = async (req, res) => {
   const genres = await db.getAllGenres();
-  res.render("genres", { genres: genres });
+  res.render("allgenres", { genres: genres });
 };
 
 exports.createGenre = [

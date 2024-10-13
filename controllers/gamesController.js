@@ -1,6 +1,18 @@
 const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 
+function formatDate(date) {
+  const d = new Date(date);
+  let month = "" + (d.getMonth() + 1);
+  let day = "" + d.getDate();
+  const year = d.getFullYear();
+
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  return [year, month, day].join("-");
+}
+
 const validateGame = [
   body("title")
     .trim()
@@ -14,10 +26,6 @@ const validateGame = [
     .trim()
     .isLength({ max: 500 })
     .withMessage("Overview must be less than 500 characters"),
-
-  body("release_date")
-    .optional()
-    .withMessage("Invalid date format for release date"),
 
   body("price")
     .isFloat({ min: 0 })
@@ -37,7 +45,12 @@ const validateGame = [
 
 exports.getGames = async (req, res) => {
   const games = await db.getAllGames();
-  res.render("games", { games: games });
+  res.render("allgames", { games: games });
+};
+
+exports.getGame = async (req, res) => {
+  const game = await db.getGame(req.params.id);
+  res.render("game", { game });
 };
 
 exports.createGame = [
@@ -46,7 +59,6 @@ exports.createGame = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render("newgame", {
-        title: "Create user",
         errors: errors.array(),
       });
     }
@@ -66,8 +78,8 @@ exports.createGame = [
 
 exports.gameUpdateGet = async (req, res) => {
   const game = await db.getGame(req.params.id);
-  res.render("updateGame", {
-    title: "Update user",
+  game.release_date = formatDate(game.release_date);
+  res.render("updategame", {
     game: game,
   });
 };
@@ -76,15 +88,16 @@ exports.updateGame = [
   validateGame,
   async (req, res) => {
     const errors = validationResult(req);
+    const game = await db.getGame(req.params.id);
     if (!errors.isEmpty()) {
-      return res.status(400).render("newgame", {
-        title: "Create user",
+      return res.status(400).render("updategame", {
+        game: game,
         errors: errors.array(),
       });
     }
     const { title, overview, release_date, price, rating, image_url } =
       req.body;
-    await db.updateGame({
+    await db.updateGame(req.params.id, {
       title,
       overview,
       release_date,

@@ -16,11 +16,8 @@ app.use("/genres", genresRouter);
 app.use("/games", gamesRouter);
 
 app.get("/", async (req, res) => {
-  /*
   const topgames = await db.getTopGames();
   res.render("index", { topgames: topgames });
-  */
-  res.render("index");
 });
 
 const PORT = 3000;

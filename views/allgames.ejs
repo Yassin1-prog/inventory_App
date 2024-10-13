@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameVerse - Your Ultimate Gaming Destination</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/index.css" />
+  </head>
+  <body>
+    <%- include('header') %>
+    <main>
+      <div class="container">
+        <h1>All Games</h1>
+        <div class="game-grid">
+          <% games.forEach(function(game) { %>
+          <a href="/games/<%= game.game_id %>" class="game-card">
+            <img src="<%= game.image_url %>" alt="<%= game.title %>" />
+            <div class="game-info">
+              <h2 class="game-title"><%= game.title %></h2>
+              <p class="game-price">$<%= game.price %></p>
+              <div class="game-rating">
+                <i class="fas fa-star"></i>
+                <span><%= game.rating %></span>
+              </div>
+            </div>
+          </a>
+          <% }); %>
+        </div>
+      </div>
+    </main>
+    <%- include('footer') %>
+  </body>
+</html>

@@ -8,15 +8,16 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../index.css" />
-    <link rel="stylesheet" href="../new.css" />
+    <link rel="stylesheet" href="/index.css" />
+    <link rel="stylesheet" href="/new.css" />
   </head>
   <body>
     <%- include('header') %>
 
     <main>
       <div class="container">
-        <h1>Add a New Game</h1>
+        <h1>Edit Game</h1>
+        <%- include("partial/error.ejs") %>
         <form action="/games/<%= game.game_id %>/update" method="POST">
           <div class="form-group">
             <label for="title">Title:</label>
@@ -30,11 +31,9 @@
           </div>
           <div class="form-group">
             <label for="overview">Overview:</label>
-            <textarea
-              id="overview"
-              name="overview"
-              value="<%= game.overview %>"
-            ></textarea>
+            <textarea id="overview" name="overview">
+<%= game.overview %></textarea
+            >
           </div>
           <div class="form-group">
             <label for="release_date">Release Date:</label>

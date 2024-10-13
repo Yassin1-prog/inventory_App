@@ -2,7 +2,7 @@ const pool = require("./db");
 
 async function getTopGames() {
   const { rows } = await pool.query(
-    "SELECT * FROM game ORDER BY rating DESC LIMIT 5"
+    "SELECT * FROM game ORDER BY rating DESC LIMIT 8"
   );
   return rows;
 }
