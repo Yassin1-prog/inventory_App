@@ -2,7 +2,7 @@
   "name": "inventory_app",
   "version": "1.0.0",
   "description": "A backend management inventory app for an online store",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
