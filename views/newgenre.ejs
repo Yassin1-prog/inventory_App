@@ -17,6 +17,7 @@
     <main>
       <div class="container">
         <h1>Add a New Genre</h1>
+        <%- include("partial/error.ejs") %>
         <form action="/genres/create" method="POST">
           <div class="form-group">
             <label for="name">Name:</label>

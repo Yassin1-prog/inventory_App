@@ -5,7 +5,7 @@ const gamesRouter = Router();
 const gamesController = require("../controllers/gamesController");
 
 gamesRouter.get("/", gamesController.getGames);
-gamesRouter.get("/create", (req, res) => res.render("newgame"));
+gamesRouter.get("/create", gamesController.createGameGet);
 gamesRouter.post("/create", gamesController.createGame);
 gamesRouter.get("/:id", gamesController.getGame);
 gamesRouter.get("/:id/update", gamesController.gameUpdateGet);

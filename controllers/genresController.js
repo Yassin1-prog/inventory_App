@@ -27,13 +27,18 @@ exports.getGenres = async (req, res) => {
   res.render("allgenres", { genres: genres });
 };
 
+exports.getGenre = async (req, res) => {
+  const genre = await db.getGenre(req.params.id);
+  const games = await db.getGamesInGenre(genre.genre_id);
+  res.render("genre", { genre: genre, games: games });
+};
+
 exports.createGenre = [
   validateGenre,
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("newGenre", {
-        title: "Create user",
+      return res.status(400).render("newgenre", {
         errors: errors.array(),
       });
     }
@@ -45,8 +50,7 @@ exports.createGenre = [
 
 exports.genreUpdateGet = async (req, res) => {
   const genre = await db.getGenre(req.params.id);
-  res.render("updateGenre", {
-    title: "Update user",
+  res.render("updategenre", {
     genre: genre,
   });
 };
@@ -55,14 +59,20 @@ exports.updateGenre = [
   validateGenre,
   async (req, res) => {
     const errors = validationResult(req);
+    const genre = await db.getGenre(req.params.id);
     if (!errors.isEmpty()) {
       return res.status(400).render("newGenre", {
-        title: "Create user",
+        genre: genre,
         errors: errors.array(),
       });
     }
     const { name, description, image_url } = req.body;
-    await db.updateGenre({ name, description, image_url });
+    await db.updateGenre(req.params.id, { name, description, image_url });
     res.redirect("/");
   },
 ];
+
+exports.deleteGenre = async (req, res) => {
+  await db.deleteGenre(req.params.id);
+  res.redirect("/");
+};

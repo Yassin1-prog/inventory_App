@@ -17,12 +17,12 @@
         <h1>All Genres</h1>
         <div class="game-grid">
           <% genres.forEach(function(genre) { %>
-          <div class="game-card">
+          <a href="/genres/<%= genre.genre_id %>" class="game-card">
             <img src="<%= genre.image_url %>" alt="<%= genre.name %>" />
             <div class="game-info">
               <h2 class="game-title"><%= genre.name %></h2>
             </div>
-          </div>
+          </a>
           <% }); %>
         </div>
       </div>
