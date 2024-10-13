@@ -88,7 +88,7 @@ INSERT INTO game_genre (game_id, genre_id) VALUES
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: "postgresql://yassin:hamza@localhost:5432/inventory",
+    connectionString: process.argv[2],
   });
   await client.connect();
   await client.query(SQL);
