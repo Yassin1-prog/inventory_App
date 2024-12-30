@@ -1,4 +1,4 @@
-# 🎮 MessageBoard
+# 🎮 Gaming Inventory
 
 A backend management inventory app for an online gaming store
 
